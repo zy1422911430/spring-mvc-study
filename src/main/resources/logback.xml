@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration scan="true" scanPeriod="1 seconds">
-    <contextListener class="ch.qos.logback.jul.LevelChangePropagator">
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
         <resrtJUL>true</resrtJUL>
     </contextListener>
     <jmxConfigurator/>
