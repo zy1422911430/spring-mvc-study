@@ -21,7 +21,7 @@ public class HomeController {
      * @ResponseBody :将返回值放入Response里，返回的并非一个页面
      * @RequestBody :允许将参数放入request体中，而不是直接放在链接上
      * @PathVariable :用来接收路径参数，如/user/1,可以获取1作为参数
-     * @RestController :@ResponseBody和@Controller注解的组合，声明此类的所有方法的返回值都放入Response中，而不是返回页面
+     * @MyRestController :@ResponseBody和@Controller注解的组合，声明此类的所有方法的返回值都放入Response中，而不是返回页面
      **/
 
     @RequestMapping("/")

@@ -4,10 +4,10 @@ import com.study.interceptor.DemoInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
@@ -20,6 +20,7 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration
 @EnableWebMvc//使用EnableWebMvc注解开启spring mvc默认配置，如MessageConverter等
+@EnableScheduling
 @ComponentScan("com.study")
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
@@ -49,4 +50,26 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/");
     }
+
+    //重写addViewControllers，可指定访问路径所指向的页面
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/testAddView").setViewName("/index");
+        registry.addViewController("/sse/push").setViewName("/sse");
+        registry.addViewController("/defer").setViewName("/defer");
+    }
+
+    //这只spring mvc在解析请求路径是，不会忽略.后面的路径，如/Home/xx.yy
+    @Override
+    public void configurePathMatch(PathMatchConfigurer configurer) {
+        configurer.setUseSuffixPatternMatch(false);
+    }
+
+    //声明上传文件的bean，这只上传最大文件大小限制
+//    @Bean
+//    public MultipartResolver multipartResolver(){
+//        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+//        multipartResolver.setMaxUploadSize(100000);
+//        return multipartResolver;
+//    }
 }
