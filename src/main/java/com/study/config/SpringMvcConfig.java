@@ -57,6 +57,8 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/testAddView").setViewName("/index");
         registry.addViewController("/sse/push").setViewName("/sse");
         registry.addViewController("/defer").setViewName("/defer");
+        registry.addViewController("/page").setViewName("/page");
+
     }
 
     //这只spring mvc在解析请求路径是，不会忽略.后面的路径，如/Home/xx.yy
