@@ -49,6 +49,7 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/");
+        registry.addResourceHandler("/image/**").addResourceLocations("classpath:/image/");
     }
 
     //重写addViewControllers，可指定访问路径所指向的页面
@@ -58,6 +59,7 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/sse/push").setViewName("/sse");
         registry.addViewController("/defer").setViewName("/defer");
         registry.addViewController("/page").setViewName("/page");
+        registry.addViewController("/map").setViewName("/map");
 
     }
 
