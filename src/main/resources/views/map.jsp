@@ -23,43 +23,50 @@
     var map = new BMap.Map("allmap");
     map.enableScrollWheelZoom();
 
-    function changeLocation() {
-        var data = [
-            [112.992029,28.204077],
-            [113.702337,28.922067],
-            [114.205388,30.339267],
-            [114.276678,30.62261]
-        ];
-        map.clearOverlays();
-        currentLocation(data);
-    }
+    var url = document.location.toString();
+    var arrUrl = url.split("?");
 
-    function changeLocation1() {
-        var data = [
-            [112.992029,28.204077],
-            [113.702337,28.922067],
-            [114.205388,30.339267],
-            [114.339748,30.52291]
-        ];
-        map.clearOverlays();
-        currentLocation(data);
-    }
+    var para = arrUrl[1];
 
+    var data = [
+        [112.992029,28.204077],
+        [113.702337,28.922067],
+        [114.205388,30.339267],
+        [114.339748,30.52291]
+    ];
 
-    function currentLocation(data) {
+    var data1 = [
+        [113.015888,28.202804],
+        [113.135471,27.806817],
+        [112.689336,26.86824],
+        [113.611501,24.837414]
+    ];
+    var multiLine = [];
+    multiLine.push(data);
+    multiLine.push(data1);
+    map.clearOverlays();
+    currentLocation(multiLine);
+
+    // if(para != null && para != '') {
+    //     document.getElementById("changeLocation1").click();
+    // }
+
+    function currentLocation(multiLine) {
         // 根据轨迹点，两两连线，最终合成一条完整的轨迹
-        var abc = data;
-        var chartData = [];
-        for (let value of data) {
-            chartData.push(new BMap.Point(value[0], value[1]));
+        for (var j = 0; j < multiLine.length; j++) {
+            var data = multiLine[j];
+            var chartData = [];
+            for (let value of data) {
+                chartData.push(new BMap.Point(value[0], value[1]));
+            }
+
+            for (var i = 0; i < chartData.length-1; i++) {
+                var startPoint = chartData[i];
+                var endPoint = chartData[i + 1];
+                showPath(startPoint, endPoint,i==0,i==chartData.length-2);
+            }
         }
 
-        var points = [];
-        for (var i = 0; i < chartData.length-1; i++) {
-            var startPoint = chartData[i];
-            var endPoint = chartData[i + 1];
-            showPath(startPoint, endPoint,i==0,i==chartData.length-2);
-        }
     }
 
 

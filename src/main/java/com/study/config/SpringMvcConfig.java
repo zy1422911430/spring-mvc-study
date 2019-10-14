@@ -60,6 +60,7 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/defer").setViewName("/defer");
         registry.addViewController("/page").setViewName("/page");
         registry.addViewController("/map").setViewName("/map");
+        registry.addViewController("/echarts").setViewName("/echarts");
 
     }
 
