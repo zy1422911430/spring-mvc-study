@@ -21,7 +21,7 @@
         <java.version>1.8</java.version>
         <jstl.version>1.2</jstl.version>
         <servlet.version>3.1.0</servlet.version>
-        <spring-framework.version>4.1.5.RELEASE</spring-framework.version>
+        <spring-framework.version>5.2.20.RELEASE</spring-framework.version>
         <logback.version>1.0.13</logback.version>
         <slf4j.version>1.7.5</slf4j.version>
         <javaee-web-api.version>8.0</javaee-web-api.version>
